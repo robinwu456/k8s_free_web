@@ -30,7 +30,7 @@ spec:
     environment {
         QUAY_ADMIN = credentials('quay-cred')
         KUBECONFIG = credentials('kubeconfig-cred')
-        IMAGE_TAG_ = "quay.io/robinwu456/bliss_free_web:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+        IMAGE_TAG = "quay.io/robinwu456/bliss_free_web:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
     }
     stages {
 	stage ('build free-web') {
