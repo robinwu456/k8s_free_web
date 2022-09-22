@@ -1,0 +1,23 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: free-web
+spec:
+  replicas:
+  selector:
+    matchLabels:
+      app: free-web
+      env: bliss-prod
+  template:
+    metadata:
+      name: free-web
+      labels:
+        app: free-web
+        env: bliss-prod
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: free-web
+          image: quay.io/robinwu456/bliss_free_web
+          imagePullPolicy: Always

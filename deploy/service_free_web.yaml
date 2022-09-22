@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: free-web
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 20001
+    targetPort: 20001
+    protocol: TCP
+  selector:
+    app: free-web
