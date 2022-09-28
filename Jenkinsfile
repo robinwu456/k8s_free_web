@@ -48,6 +48,7 @@ spec:
             steps {
 	    	sh 'export MYSQL_IP=$(cat mysql_ip)'
 		sh 'echo ${MYSQL_IP}'
+		sh "sed 's/NNF_DB_HOST=10.98.0.254/NNF_DB_HOST=${MYSQL_IP}/g' mysql_ip"
                 //sh 'podman login --tls-verify=false -u=${QUAY_ADMIN_USR} -p=${QUAY_ADMIN_PSW} quay.io'
                 //sh 'podman build --cache-from --tls-verify=false -t "${IMAGE_TAG}" .'
                 //sh 'podman images'
