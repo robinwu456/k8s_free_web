@@ -33,6 +33,17 @@ spec:
         IMAGE_TAG = "quay.io/robinwu456/bliss_free_web:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
     }
     stages {
+    	stage ('get mysql/redis ip') {
+	    steps {
+	        container('k1') {
+		    sh "kubectl get service -n bliss-prod | grep mysql | awk '{print $3}' > mysql_ip"
+		    sh "kubectl get service -n bliss-prod | grep redis | awk '{print $3}' > redis_ip"
+		    sh 'ls -al'
+		    sh 'cat mysql_ip'
+		    sh 'cat redis_ip'
+		}
+	    }
+	}
 	stage ('build free-web') {
             steps {
                 sh 'podman login --tls-verify=false -u=${QUAY_ADMIN_USR} -p=${QUAY_ADMIN_PSW} quay.io'
@@ -45,6 +56,8 @@ spec:
             when { branch 'master' }
             steps {
                 container('k1') {
+		    sh 'ls -al'
+		    sh 'cat mysql_ip'
                     sh 'mkdir -p ~/.kube && cp ${KUBECONFIG} ~/.kube/config'
                     sh "sed -i.bak 's#quay.io/robinwu456/bliss_free_web#${IMAGE_TAG}#' deploy/free_web.yaml"
                     sh 'kubectl apply -f deploy/service_free_web.yaml -n bliss-prod'
