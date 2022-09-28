@@ -37,7 +37,7 @@ spec:
 	    steps {
 	        container('k1') {
                     //sh "kubectl get service -n bliss-prod | grep mysql | awk '{print $3}' | tee mysql_ip"
-                    sh "kubectl get service -n bliss-prod | grep mysql | awk '{print $3}'"
+                    sh "kubectl get service -n bliss-prod | grep mysql | awk '{print \$3}'"
                     //sh "kubectl get service -n bliss-prod | grep redis | awk '{print $3}' | tee redis_ip"
                     //sh 'ls -al'
                     //sh 'cat mysql_ip'
