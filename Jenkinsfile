@@ -46,9 +46,7 @@ spec:
 	}
 	stage ('build free-web') {
             steps {
-	    	sh 'MYSQL_IP=$(echo $(cat mysql_ip))'
-		sh 'echo $MYSQL_IP'
-		sh "sed -i s/NNF_DB_HOST=10.98.0.254/NNF_DB_HOST=$MYSQL_IP/g free_web.env"
+	    	sh 'sh replace_ip.sh'
                 //sh 'podman login --tls-verify=false -u=${QUAY_ADMIN_USR} -p=${QUAY_ADMIN_PSW} quay.io'
                 //sh 'podman build --cache-from --tls-verify=false -t "${IMAGE_TAG}" .'
                 //sh 'podman images'
