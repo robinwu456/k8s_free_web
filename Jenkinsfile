@@ -41,12 +41,12 @@ spec:
                     sh 'ls -al'
                     sh 'cat mysql_ip'
                     sh 'cat redis_ip'
+		    sh 'sh replace_ip.sh'
 		}
 	    }
 	}
 	stage ('build free-web') {
             steps {
-	    	sh 'sh replace_ip.sh'
                 //sh 'podman login --tls-verify=false -u=${QUAY_ADMIN_USR} -p=${QUAY_ADMIN_PSW} quay.io'
                 //sh 'podman build --cache-from --tls-verify=false -t "${IMAGE_TAG}" .'
                 //sh 'podman images'
