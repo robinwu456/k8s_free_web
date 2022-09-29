@@ -52,8 +52,6 @@ spec:
             when { branch 'master' }
             steps {
                 container('k1') {
-		    sh 'ls -al'
-		    sh 'cat mysql_ip'
                     sh 'mkdir -p ~/.kube && cp ${KUBECONFIG} ~/.kube/config'
                     sh "sed -i.bak 's#quay.io/robinwu456/bliss_free_web#${IMAGE_TAG}#' deploy/free_web.yaml"
                     sh 'kubectl apply -f deploy/service_free_web.yaml -n bliss-prod'
