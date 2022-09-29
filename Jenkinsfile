@@ -47,7 +47,7 @@ spec:
 	}
 	stage ('build free-web') {
             steps {
-                //sh 'podman login --tls-verify=false -u=${QUAY_ADMIN_USR} -p=${QUAY_ADMIN_PSW} quay.io'
+                sh 'podman login --tls-verify=false -u=${QUAY_ADMIN_USR} -p=${QUAY_ADMIN_PSW} quay.io'
                 //sh 'podman build --cache-from --tls-verify=false -t "${IMAGE_TAG}" .'
                 //sh 'podman images'
                 //sh 'podman push --tls-verify=false "${IMAGE_TAG}"'
